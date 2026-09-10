@@ -10,9 +10,14 @@ def calculate_total(
     """Calculate the final total a customer pays for their cart."""
     total = subtotal
 
-    # Feature A: Loyalty discount — 10% off orders with a subtotal over $50
+    # Pricing rules are applied in order: discount, then tax.
+    # Feature A: Loyalty discount, 10% off orders with a subtotal over $50
     if apply_discount and subtotal > 50:
         total = total * 0.9
+
+    # Feature B: Sales tax, 8% on every order
+    if apply_tax:
+        total = total * 1.08
 
     return total
 
